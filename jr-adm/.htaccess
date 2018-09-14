@@ -1,0 +1,31 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^(.*)\.(.*)$ $1\.php
+
+	RewriteRule ^list/pedido/?$ list_pedidos.php [NC]
+	RewriteRule ^view/cliente/([a-z0-9-_]+)/?$ form_clientes.php?id=$1 [NC]
+
+	RewriteRule ^list/menu/([0-9-]+)/([a-z0-9-_]+)/?$ menu_list.php?niveis=$1&tabela=$2 [NC]
+	RewriteRule ^add/menu/([0-9-]+)/([a-z0-9-_]+)/?$ menu_add.php?niveis=$1&tabela=$2 [NC]
+	RewriteRule ^salva/menu/([0-9-]+)/([a-z0-9-_]+)/?$ menu_salva.php?niveis=$1&tabela=$2 [NC]
+	RewriteRule ^add/menu/([0-9-]+)/([a-z0-9-_]+)/([0-9-]+)?$ menu_add.php?niveis=$1&tabela=$2&id=$3 [NC]
+
+	RewriteRule ^list/produtos/copy/([0-9-]+)?$ copyProdutos.php?id=$1 [NC]
+	
+	RewriteRule ^add/([a-z0-9-_]+)/?$ add.php?form=$1 [NC]
+	RewriteRule ^add/([a-z0-9-_]+)/([a-z0-9-]+)/?$ add.php?form=$1&id=$2 [NC]
+	RewriteRule ^add/([a-z0-9-_]+)/([a-z0-9-_]+)/([a-z0-9-]+)/?$ add.php?form=$1&form2=$2&id2=$3 [NC]
+	RewriteRule ^add/([a-z0-9-_]+)/([a-z0-9-_]+)/([a-z0-9-]+)/([a-z0-9-]+)/?$ add.php?form=$1&form2=$2&id2=$3&id=$4 [NC]
+	RewriteRule ^list/([a-z0-9-_]+)/?$ list.php?form=$1 [NC]
+	RewriteRule ^list/([a-z0-9-_]+)/([a-z0-9-_]+)/([a-z0-9-]+)/?$ list.php?form=$1&form2=$2&id=$3 [NC]
+	RewriteRule ^xls/([a-z0-9-_]+)/?$ xls.php?form=$1 [NC]
+	RewriteRule ^csv/([a-z0-9-_]+)/?$ csv.php?form=$1 [NC]
+	RewriteRule ^csv/([a-z0-9-_]+)/csv_select/?$ csv_select.php?form=$1 [NC]
+	RewriteRule ^view/([a-z0-9-_]+)/([a-z0-9-]+)/?$ view.php?form=$1&id=$2 [NC]
+	RewriteRule ^sair/?$ sair.php [NC]
+
+	
+</IfModule>
