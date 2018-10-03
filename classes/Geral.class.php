@@ -224,24 +224,24 @@
 			$dados['prev'] = $prev;
 			$dados['pag'] = $pag;
 			if($total_pag != 1) {
-				$html .= '<ul class="pagination">';
+				$html .= '<div class="pagi-nav text-right">';
 				if($prev != 0) {
-					$html .= '<li><a href="'.$url.$prev.'" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+					$html .= '<a href="'.$url.$prev.'" class="next"><i class="fa fa-angle-left"></i></a>';
 				}
 				else {
-					$html .= '<li><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+					$html .= '';
 				}
 				for ($i=1; $i <= $total_pag; $i++) { 
-					$nav = ($i == $pag) ? '<li class="active"><a>'.$i.'</a></li>' : '<li><a href="'.$url.$i.'">'.$i.'</a></li>';
+					$nav = ($i == $pag) ? '<a href="#" class="current">'.$i.'</a>' : '<a href="'.$url.$i.'">'.$i.'</a>';
 					$html .= $nav;
 				}
 				if ($pag != $total_pag) {
-					$html .= '<li><a href="'.$url.$next.'" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+					$html .= '<a href="'.$url.$next.'" class="next"><i class="fa fa-angle-right"></i></a>';
 				}
 				else {
-					$html .= '<li><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+					$html .= '';
 				}
-				$html .= '</ul>';
+				$html .= '</div>';
 			}
 			$dados['html'] = $html;
 			return $dados;

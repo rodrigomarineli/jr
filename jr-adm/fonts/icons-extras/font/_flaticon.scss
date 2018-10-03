@@ -1,0 +1,275 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 22/05/2016 00:18
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-bag:before { content: "\f100"; }
+.flaticon-beer:before { content: "\f101"; }
+.flaticon-birthday-cake:before { content: "\f102"; }
+.flaticon-blank-squared-bubble:before { content: "\f103"; }
+.flaticon-bone:before { content: "\f104"; }
+.flaticon-business:before { content: "\f105"; }
+.flaticon-business-1:before { content: "\f106"; }
+.flaticon-business-2:before { content: "\f107"; }
+.flaticon-business-3:before { content: "\f108"; }
+.flaticon-business-4:before { content: "\f109"; }
+.flaticon-business-5:before { content: "\f10a"; }
+.flaticon-business-6:before { content: "\f10b"; }
+.flaticon-business-7:before { content: "\f10c"; }
+.flaticon-business-8:before { content: "\f10d"; }
+.flaticon-calendar:before { content: "\f10e"; }
+.flaticon-calendar-1:before { content: "\f10f"; }
+.flaticon-calendar-2:before { content: "\f110"; }
+.flaticon-chef:before { content: "\f111"; }
+.flaticon-chicken:before { content: "\f112"; }
+.flaticon-chicken-looking-right:before { content: "\f113"; }
+.flaticon-coke-bottle:before { content: "\f114"; }
+.flaticon-commerce:before { content: "\f115"; }
+.flaticon-commerce-1:before { content: "\f116"; }
+.flaticon-contact-form:before { content: "\f117"; }
+.flaticon-cooking:before { content: "\f118"; }
+.flaticon-cooking-1:before { content: "\f119"; }
+.flaticon-cow-silhouette:before { content: "\f11a"; }
+.flaticon-cup:before { content: "\f11b"; }
+.flaticon-document:before { content: "\f11c"; }
+.flaticon-drink:before { content: "\f11d"; }
+.flaticon-drinking:before { content: "\f11e"; }
+.flaticon-drinking-1:before { content: "\f11f"; }
+.flaticon-elegant-man-with-suitcase:before { content: "\f120"; }
+.flaticon-fish:before { content: "\f121"; }
+.flaticon-food:before { content: "\f122"; }
+.flaticon-food-1:before { content: "\f123"; }
+.flaticon-food-10:before { content: "\f124"; }
+.flaticon-food-11:before { content: "\f125"; }
+.flaticon-food-12:before { content: "\f126"; }
+.flaticon-food-13:before { content: "\f127"; }
+.flaticon-food-14:before { content: "\f128"; }
+.flaticon-food-15:before { content: "\f129"; }
+.flaticon-food-16:before { content: "\f12a"; }
+.flaticon-food-17:before { content: "\f12b"; }
+.flaticon-food-18:before { content: "\f12c"; }
+.flaticon-food-19:before { content: "\f12d"; }
+.flaticon-food-2:before { content: "\f12e"; }
+.flaticon-food-20:before { content: "\f12f"; }
+.flaticon-food-21:before { content: "\f130"; }
+.flaticon-food-22:before { content: "\f131"; }
+.flaticon-food-23:before { content: "\f132"; }
+.flaticon-food-24:before { content: "\f133"; }
+.flaticon-food-25:before { content: "\f134"; }
+.flaticon-food-26:before { content: "\f135"; }
+.flaticon-food-27:before { content: "\f136"; }
+.flaticon-food-28:before { content: "\f137"; }
+.flaticon-food-29:before { content: "\f138"; }
+.flaticon-food-3:before { content: "\f139"; }
+.flaticon-food-30:before { content: "\f13a"; }
+.flaticon-food-31:before { content: "\f13b"; }
+.flaticon-food-32:before { content: "\f13c"; }
+.flaticon-food-33:before { content: "\f13d"; }
+.flaticon-food-34:before { content: "\f13e"; }
+.flaticon-food-4:before { content: "\f13f"; }
+.flaticon-food-5:before { content: "\f140"; }
+.flaticon-food-6:before { content: "\f141"; }
+.flaticon-food-7:before { content: "\f142"; }
+.flaticon-food-8:before { content: "\f143"; }
+.flaticon-food-9:before { content: "\f144"; }
+.flaticon-fruit:before { content: "\f145"; }
+.flaticon-fruit-1:before { content: "\f146"; }
+.flaticon-gajar-ka-halwa:before { content: "\f147"; }
+.flaticon-glass-and-bottle-of-wine:before { content: "\f148"; }
+.flaticon-grill:before { content: "\f149"; }
+.flaticon-grill-1:before { content: "\f14a"; }
+.flaticon-hamburger:before { content: "\f14b"; }
+.flaticon-hot-soup-in-a-bowl:before { content: "\f14c"; }
+.flaticon-interface:before { content: "\f14d"; }
+.flaticon-kids-couple:before { content: "\f14e"; }
+.flaticon-kitchen:before { content: "\f14f"; }
+.flaticon-knife:before { content: "\f150"; }
+.flaticon-list:before { content: "\f151"; }
+.flaticon-list-1:before { content: "\f152"; }
+.flaticon-list-2:before { content: "\f153"; }
+.flaticon-menu:before { content: "\f154"; }
+.flaticon-paper:before { content: "\f155"; }
+.flaticon-people:before { content: "\f156"; }
+.flaticon-pig-with-round-tail:before { content: "\f157"; }
+.flaticon-placeholder-on-map-paper-in-perspective:before { content: "\f158"; }
+.flaticon-pudding:before { content: "\f159"; }
+.flaticon-pudding-1:before { content: "\f15a"; }
+.flaticon-remove:before { content: "\f15b"; }
+.flaticon-restaurant:before { content: "\f15c"; }
+.flaticon-salad:before { content: "\f15d"; }
+.flaticon-salad-bowl-hand-drawn-food:before { content: "\f15e"; }
+.flaticon-sandwich:before { content: "\f15f"; }
+.flaticon-sandwich-1:before { content: "\f160"; }
+.flaticon-sausage:before { content: "\f161"; }
+.flaticon-serving:before { content: "\f162"; }
+.flaticon-shape:before { content: "\f163"; }
+.flaticon-shopping:before { content: "\f164"; }
+.flaticon-shopping-bag:before { content: "\f165"; }
+.flaticon-shopping-cart:before { content: "\f166"; }
+.flaticon-soda:before { content: "\f167"; }
+.flaticon-spaghetti-plate:before { content: "\f168"; }
+.flaticon-speaking:before { content: "\f169"; }
+.flaticon-steak:before { content: "\f16a"; }
+.flaticon-steak-1:before { content: "\f16b"; }
+.flaticon-stew:before { content: "\f16c"; }
+.flaticon-stew-1:before { content: "\f16d"; }
+.flaticon-take-away-tacos:before { content: "\f16e"; }
+.flaticon-talking-by-phone-auricular-symbol-with-speech-bubble:before { content: "\f16f"; }
+.flaticon-toast:before { content: "\f170"; }
+.flaticon-tool:before { content: "\f171"; }
+.flaticon-truck:before { content: "\f172"; }
+.flaticon-two-speech-bubbles:before { content: "\f173"; }
+.flaticon-verification-of-delivery-list-clipboard-symbol:before { content: "\f174"; }
+.flaticon-woman-with-headset:before { content: "\f175"; }
+    
+    $font-Flaticon-bag: "\f100";
+    $font-Flaticon-beer: "\f101";
+    $font-Flaticon-birthday-cake: "\f102";
+    $font-Flaticon-blank-squared-bubble: "\f103";
+    $font-Flaticon-bone: "\f104";
+    $font-Flaticon-business: "\f105";
+    $font-Flaticon-business-1: "\f106";
+    $font-Flaticon-business-2: "\f107";
+    $font-Flaticon-business-3: "\f108";
+    $font-Flaticon-business-4: "\f109";
+    $font-Flaticon-business-5: "\f10a";
+    $font-Flaticon-business-6: "\f10b";
+    $font-Flaticon-business-7: "\f10c";
+    $font-Flaticon-business-8: "\f10d";
+    $font-Flaticon-calendar: "\f10e";
+    $font-Flaticon-calendar-1: "\f10f";
+    $font-Flaticon-calendar-2: "\f110";
+    $font-Flaticon-chef: "\f111";
+    $font-Flaticon-chicken: "\f112";
+    $font-Flaticon-chicken-looking-right: "\f113";
+    $font-Flaticon-coke-bottle: "\f114";
+    $font-Flaticon-commerce: "\f115";
+    $font-Flaticon-commerce-1: "\f116";
+    $font-Flaticon-contact-form: "\f117";
+    $font-Flaticon-cooking: "\f118";
+    $font-Flaticon-cooking-1: "\f119";
+    $font-Flaticon-cow-silhouette: "\f11a";
+    $font-Flaticon-cup: "\f11b";
+    $font-Flaticon-document: "\f11c";
+    $font-Flaticon-drink: "\f11d";
+    $font-Flaticon-drinking: "\f11e";
+    $font-Flaticon-drinking-1: "\f11f";
+    $font-Flaticon-elegant-man-with-suitcase: "\f120";
+    $font-Flaticon-fish: "\f121";
+    $font-Flaticon-food: "\f122";
+    $font-Flaticon-food-1: "\f123";
+    $font-Flaticon-food-10: "\f124";
+    $font-Flaticon-food-11: "\f125";
+    $font-Flaticon-food-12: "\f126";
+    $font-Flaticon-food-13: "\f127";
+    $font-Flaticon-food-14: "\f128";
+    $font-Flaticon-food-15: "\f129";
+    $font-Flaticon-food-16: "\f12a";
+    $font-Flaticon-food-17: "\f12b";
+    $font-Flaticon-food-18: "\f12c";
+    $font-Flaticon-food-19: "\f12d";
+    $font-Flaticon-food-2: "\f12e";
+    $font-Flaticon-food-20: "\f12f";
+    $font-Flaticon-food-21: "\f130";
+    $font-Flaticon-food-22: "\f131";
+    $font-Flaticon-food-23: "\f132";
+    $font-Flaticon-food-24: "\f133";
+    $font-Flaticon-food-25: "\f134";
+    $font-Flaticon-food-26: "\f135";
+    $font-Flaticon-food-27: "\f136";
+    $font-Flaticon-food-28: "\f137";
+    $font-Flaticon-food-29: "\f138";
+    $font-Flaticon-food-3: "\f139";
+    $font-Flaticon-food-30: "\f13a";
+    $font-Flaticon-food-31: "\f13b";
+    $font-Flaticon-food-32: "\f13c";
+    $font-Flaticon-food-33: "\f13d";
+    $font-Flaticon-food-34: "\f13e";
+    $font-Flaticon-food-4: "\f13f";
+    $font-Flaticon-food-5: "\f140";
+    $font-Flaticon-food-6: "\f141";
+    $font-Flaticon-food-7: "\f142";
+    $font-Flaticon-food-8: "\f143";
+    $font-Flaticon-food-9: "\f144";
+    $font-Flaticon-fruit: "\f145";
+    $font-Flaticon-fruit-1: "\f146";
+    $font-Flaticon-gajar-ka-halwa: "\f147";
+    $font-Flaticon-glass-and-bottle-of-wine: "\f148";
+    $font-Flaticon-grill: "\f149";
+    $font-Flaticon-grill-1: "\f14a";
+    $font-Flaticon-hamburger: "\f14b";
+    $font-Flaticon-hot-soup-in-a-bowl: "\f14c";
+    $font-Flaticon-interface: "\f14d";
+    $font-Flaticon-kids-couple: "\f14e";
+    $font-Flaticon-kitchen: "\f14f";
+    $font-Flaticon-knife: "\f150";
+    $font-Flaticon-list: "\f151";
+    $font-Flaticon-list-1: "\f152";
+    $font-Flaticon-list-2: "\f153";
+    $font-Flaticon-menu: "\f154";
+    $font-Flaticon-paper: "\f155";
+    $font-Flaticon-people: "\f156";
+    $font-Flaticon-pig-with-round-tail: "\f157";
+    $font-Flaticon-placeholder-on-map-paper-in-perspective: "\f158";
+    $font-Flaticon-pudding: "\f159";
+    $font-Flaticon-pudding-1: "\f15a";
+    $font-Flaticon-remove: "\f15b";
+    $font-Flaticon-restaurant: "\f15c";
+    $font-Flaticon-salad: "\f15d";
+    $font-Flaticon-salad-bowl-hand-drawn-food: "\f15e";
+    $font-Flaticon-sandwich: "\f15f";
+    $font-Flaticon-sandwich-1: "\f160";
+    $font-Flaticon-sausage: "\f161";
+    $font-Flaticon-serving: "\f162";
+    $font-Flaticon-shape: "\f163";
+    $font-Flaticon-shopping: "\f164";
+    $font-Flaticon-shopping-bag: "\f165";
+    $font-Flaticon-shopping-cart: "\f166";
+    $font-Flaticon-soda: "\f167";
+    $font-Flaticon-spaghetti-plate: "\f168";
+    $font-Flaticon-speaking: "\f169";
+    $font-Flaticon-steak: "\f16a";
+    $font-Flaticon-steak-1: "\f16b";
+    $font-Flaticon-stew: "\f16c";
+    $font-Flaticon-stew-1: "\f16d";
+    $font-Flaticon-take-away-tacos: "\f16e";
+    $font-Flaticon-talking-by-phone-auricular-symbol-with-speech-bubble: "\f16f";
+    $font-Flaticon-toast: "\f170";
+    $font-Flaticon-tool: "\f171";
+    $font-Flaticon-truck: "\f172";
+    $font-Flaticon-two-speech-bubbles: "\f173";
+    $font-Flaticon-verification-of-delivery-list-clipboard-symbol: "\f174";
+    $font-Flaticon-woman-with-headset: "\f175";

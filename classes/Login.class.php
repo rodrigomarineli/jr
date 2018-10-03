@@ -60,6 +60,8 @@
 		/* LOGIN DO SITE */
 		static private function validarSite($usuario,$senha){
 			$senha = self::crip($senha);
+			var_dump($usuario);
+			var_dump($senha);
 
 			try{
 			$validar = self::getConn()->prepare('SELECT id, nome FROM `cliente` WHERE `email`=? AND `senha`=? LIMIT 1');

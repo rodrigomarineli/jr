@@ -153,24 +153,122 @@ $(function() {
 	}
 	//Qty Up-Down
 	$('.detail-qty').each(function(){
-		$(this).find('.qty-up').on('click',function(event){
-			event.preventDefault();
-			var qtyval = parseInt($(this).parent().find('.qty-val').text(),10);
-			qtyval=qtyval+1;
-			$(this).parent().find('.qty-val').text(qtyval);
-		});
-		$(this).find('.qty-down').on('click',function(event){
-			event.preventDefault();
-			var qtyval = parseInt($(this).parent().find('.qty-val').text(),10);
-			qtyval=qtyval-1;
-			if(qtyval>1){
+		if($(this).hasClass('carrinho')) {
+			$(this).find('.qty-up').on('click', function (event) {
+				event.preventDefault();
+				var produto = $(this).parent().find('.qty-val').attr('data-produto');
+				var qtyval = parseInt($(this).parent().find('.qty-val').text(), 10);
+				qtyval = qtyval + 1;
 				$(this).parent().find('.qty-val').text(qtyval);
-			}else{
-				qtyval=1;
+				$.ajax({
+					type: "POST",
+					url: url_site + 'js/ajax/atualizar-carrinho.php',
+					data: { qtd: qtyval, produto: produto },
+					success: function (response) {
+					}
+				});
+			});
+			$(this).find('.qty-down').on('click', function (event) {
+				event.preventDefault();
+				var produto = $(this).parent().find('.qty-val').attr('data-produto');
+				var qtyval = parseInt($(this).parent().find('.qty-val').text(), 10);
+				qtyval = qtyval - 1;
+				if (qtyval > 1) {
+					$(this).parent().find('.qty-val').text(qtyval);
+				} else {
+					qtyval = 1;
+					$(this).parent().find('.qty-val').text(qtyval);
+				}
+				$.ajax({
+					type: "POST",
+					url: url_site + 'js/ajax/atualizar-carrinho.php',
+					data: { qtd: qtyval, produto: produto },
+					success: function (response) {
+					}
+				});
+			});
+		} else {
+			$(this).find('.qty-up').on('click',function(event){
+				event.preventDefault();
+				var qtyval = parseInt($(this).parent().find('.qty-val').text(),10);
+				qtyval=qtyval+1;
 				$(this).parent().find('.qty-val').text(qtyval);
+				$(this).parent().find('.qty-val-input').val(qtyval);
+			});
+			$(this).find('.qty-down').on('click',function(event){
+				event.preventDefault();
+				var qtyval = parseInt($(this).parent().find('.qty-val').text(),10);
+				qtyval=qtyval-1;
+				if(qtyval>1){
+					$(this).parent().find('.qty-val').text(qtyval);
+					$(this).parent().find('.qty-val-input').val(qtyval);
+				}else{
+					qtyval=1;
+					$(this).parent().find('.qty-val').text(qtyval);
+					$(this).parent().find('.qty-val-input').val(qtyval);
+				}
+			});
+		}
+	});
+
+	// change locacao venda
+	$(document).on('change', '.modoCart', function () {
+		var produto = $(this).attr('data-produto');
+		var modo = $(this).attr('data-modo');
+		$.ajax({
+			type: "POST",
+			url: url_site + 'js/ajax/atualizar-carrinho.php',
+			data: { modo: modo, produto: produto },
+			success: function (response) {
+				location.reload();
 			}
 		});
 	});
+
+	$(document).on('change', '.deCart', function () {
+		var produto = $(this).attr('data-produto');
+		var de = $(this).val();
+		$.ajax({
+			type: "POST",
+			url: url_site + 'js/ajax/atualizar-carrinho.php',
+			data: { de: de, produto: produto },
+			success: function (response) {
+				// location.reload();
+			}
+		});
+	});
+
+	$(document).on('change', '.ateCart', function () {
+		var produto = $(this).attr('data-produto');
+		var ate = $(this).val();
+		$.ajax({
+			type: "POST",
+			url: url_site + 'js/ajax/atualizar-carrinho.php',
+			data: { ate: ate, produto: produto },
+			success: function (response) {
+			}
+		});
+	});
+
+	$(document).on('click', '.deleteCart', function (e) {
+		e.preventDefault();
+		var produto = $(this).attr('data-produto');
+		$.ajax({
+			type: "POST",
+			url: url_site + 'js/ajax/atualizar-carrinho.php',
+			data: { remove: 1, produto: produto },
+			success: function (response) {
+				location.reload();
+			}
+		});
+	});
+
+	$(document).on('change','.qtdPag', function (e) {
+		e.preventDefault();
+		var qtdPag = $('option:selected', this).val();
+		location.href= qtdPag;
+	});
+
 	//Filter Price
 	if($('.range-filter').length>0){
 		$('.range-filter').each(function(){
@@ -321,11 +419,28 @@ $(function() {
 		if($(this).hasClass('login-status')){
 			$(this).text($(this).attr('data-login'));
 			$(this).parents('.register-content-box').find('.block-login').hide();
+			$(this).parents('.register-content-box').find('.block-senha').hide();
 			$(this).parents('.register-content-box').find('.block-register').show();
 		}else{
 			$(this).text($(this).attr('data-register'));
 			$(this).parents('.register-content-box').find('.block-login').show();
+			$(this).parents('.register-content-box').find('.block-senha').hide();
 			$(this).parents('.register-content-box').find('.block-register').hide();
+		}
+	});
+	$('.esqueci-minha-senha').on('click', function (event) {
+		event.preventDefault();
+		$(this).toggleClass('senha-status');
+		if ($(this).hasClass('senha-status')) {
+			$(this).text($(this).attr('data-login'));
+			$(this).parents('.register-content-box').find('.block-login').hide();
+			$(this).parents('.register-content-box').find('.block-register').hide();
+			$(this).parents('.register-content-box').find('.block-senha').show();
+		} else {
+			$(this).text($(this).attr('data-register'));
+			$(this).parents('.register-content-box').find('.block-login').hide();
+			$(this).parents('.register-content-box').find('.block-register').hide();
+			$(this).parents('.register-content-box').find('.block-senha').show();
 		}
 	});
 	//Box Filter Product	

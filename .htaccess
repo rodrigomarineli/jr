@@ -1,0 +1,68 @@
+<IfModule mod_rewrite.c>
+
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^(.*)\.(.*)$ $1\.php
+	RewriteRule ^/?$ index.php [NC]
+	RewriteRule ^index/?$ index.php [NC]
+	RewriteRule ^contato/?$ contato.php [NC]
+	RewriteRule ^produtos/?$ produtos.php [NC]
+	RewriteRule ^produtos/([0-9-]+)?$ produtos.php?pag=$1 [NC]
+	
+	RewriteRule ^produtos/limit/([0-9-]+)?$ produtos.php?limit=$1 [NC]
+	RewriteRule ^produtos/pag/([0-9-]+)?$ produtos.php?pag=$1 [NC]
+
+	RewriteRule ^produtos/limit/([0-9-]+)/pag/([0-9-]+)?$ produtos.php?limit=$1&pag=$2 [NC]
+
+	RewriteRule ^produtos/([a-z0-9-_]+)?$ produtos.php?url=$1 [NC]
+	RewriteRule ^produtos/([a-z0-9-_]+)/([0-9-]+)?$ produtos.php?categoria=$1&pag=$2 [NC]
+	RewriteRule ^produtos/([a-z0-9-_]+)/([a-z0-9-_]+)?$ produto.php?categoria=$1&url=$2 [NC]
+	RewriteRule ^pecas-e-acessorios/?$ pecas.php [NC]
+	RewriteRule ^pecas-e-acessorios/([a-z0-9-_]+)?$ pecas.php?url=$1 [NC]
+	RewriteRule ^pecas-e-acessorios/([a-z0-9-_]+)/([a-z0-9-_]+)?$ peca.php?categoria=$1&url=$2 [NC]
+	RewriteRule ^login/?$ login.php [NC]
+	RewriteRule ^carrinho/?$ carrinho.php [NC]
+	RewriteRule ^checkout/?$ checkout.php [NC]
+	RewriteRule ^finalizado/?$ finalizado.php [NC]
+
+	RewriteRule ^busca/?$ busca.php [NC]
+	RewriteRule ^busca/([a-z0-9-_]+)/pag/([0-9-]+)?$ busca.php?s=$1&pag=$2 [NC]
+	RewriteRule ^busca/([a-z0-9-_]+)/limit/([0-9-]+)?$ busca.php?s=$1&limit=$2 [NC]
+	RewriteRule ^busca/([a-z0-9-_]+)/limit/([0-9-]+)/pag/([0-9-]+)?$ busca.php?s=$1&limit=$2&pag=$3 [NC]
+
+
+	RewriteRule ^nossos-enderecos/?$ nossos-enderecos.php [NC]
+	RewriteRule ^faq/?$ faq.php [NC]
+	RewriteRule ^produtos/busca/([a-z0-9-]+)/([0-9-]+)?$ produtos.php?busca=$1&pag=$2 [NC]
+	RewriteRule ^produtos/filtro/([a-z0-9-]+)/([0-9-]+)?$ produtos.php?filtro=$1&pag=$2 [NC]
+	RewriteRule ^produtos/busca/([a-z0-9-]+)/filtro/([0-9-]+)/([0-9-]+)?$ produtos.php?busca=$1&filtro=$2&pag=$3 [NC]
+	RewriteRule ^produtos/([a-z0-9-]+)/filtro/([a-z0-9-]+)/([0-9-]+)?$ produtos.php?categoria=$1&filtro=$2&pag=$3 [NC]
+	RewriteRule ^produto/([a-z0-9-_]+)?$ produto-detalhe.php?url=$1 [NC]
+	RewriteRule ^identificacao/?$ identificacao.php [NC]
+	RewriteRule ^carrinho-frete/?$ carrinho-frete.php [NC]
+	RewriteRule ^carrinho-pagamento/?$ carrinho-pagamento.php [NC]
+	RewriteRule ^carrinho-confirmacao/?$ carrinho-confirmacao.php [NC]
+	RewriteRule ^cadastro/?$ cadastro.php [NC]
+	RewriteRule ^recuperacao-de-senha/?$ recuperacao-de-senha.php [NC]
+	RewriteRule ^assistencia-tecnica/?$ assistencia-tecnica.php [NC]
+	RewriteRule ^corporativo/?$ corporativo.php [NC]
+	RewriteRule ^capas-personalizadas/?$ capas-personalizadas.php [NC]
+	RewriteRule ^meus-pedidos/?$ meus-pedidos.php [NC]
+	RewriteRule ^historico-pedido/?$ historico-pedido.php [NC]
+	RewriteRule ^historico-pedido/([0-9-]+)/?$ historico-pedido.php?id=$1 [NC]
+	RewriteRule ^alterar-dados-pessoais/?$ alterar-dados-pessoais.php [NC]
+	RewriteRule ^alterar-endereco/?$ alterar-endereco.php [NC]
+	RewriteRule ^alterar-senha/?$ alterar-senha.php [NC]
+	RewriteRule ^sitemap/?$ sitemap.php [NC]
+	RewriteRule ^verifica-carrinho/?$ verifica-carrinho.php [NC]
+	RewriteRule ^descarta-produto/([a-z0-9-]+)/?$ descarta-produto.php?key=$1 [NC,L]
+	RewriteRule ^sair/?$ sair.php [NC]
+	
+	RewriteRule ^404/?$ 404.php [NC]
+	RewriteRule ^([a-z0-9-]+)/?$ paginas.php?url=$1 [NC]
+	
+
+
+</IfModule>

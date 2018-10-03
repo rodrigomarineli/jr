@@ -1,0 +1,138 @@
+@font-face{font-family:"Flaticon";src:url("./Flaticon.eot");src:url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+url("./Flaticon.woff") format("woff"),
+url("./Flaticon.ttf") format("truetype"),
+url("./Flaticon.svg#Flaticon") format("svg");font-weight:normal;font-style:normal;}
+@media screen and (-webkit-min-device-pixel-ratio:0){@font-face{font-family:"Flaticon";src:url("./Flaticon.svg#Flaticon") format("svg");}
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after{font-family:Flaticon;font-size:20px;font-style:normal;margin-left:20px;}
+.btn-categoria-item [class^="flaticon-"]:before{font-size:22px;margin:0px;color:#fff}
+#categories li [class^="flaticon-"]:before{font-size:22px;margin:0px;color:#fff;float:left;padding:10px 13px 10px 15px;margin:0px;}
+.button [class^="flaticon-"]:before{padding-right:15px;margin:0px;}
+
+.solict-refeicoes [class^="flaticon-"]:before{font-size:26px;margin:0px;color:#666;float:left;padding:6px 13px 15px 15px;margin:0px; cursor:pointer}
+.adicionar-refeicoes [class^="flaticon-"]:before{font-size:28px;margin:0px;color:#911938;float:left;padding:6px 15px 10px 15px;margin:0px; cursor:pointer}
+
+.solict-refeicoes:hover [class^="flaticon-"]:before{font-size:28px;margin:0px;color:#666;float:left;padding:0px 13px 15px 15px;margin:0px;}
+.adicionar-refeicoes:hover [class^="flaticon-"]:before{font-size:30px;margin:0px;color:#911938;float:left;padding:0px 15px 10px 15px;margin:0px;}
+
+.calculad [class^="flaticon-"]:before{font-size:36px;margin:0px;color:#666; padding:10px 13px 0px 15px; cursor:pointer; color:#000; float:left; position:relative}
+
+.flaticon-bag:before { content: "\f100"; }
+.flaticon-beer:before { content: "\f101"; }
+.flaticon-birthday-cake:before { content: "\f102"; }
+.flaticon-blank-squared-bubble:before { content: "\f103"; }
+.flaticon-bone:before { content: "\f104"; }
+.flaticon-business:before { content: "\f105"; }
+.flaticon-business-1:before { content: "\f106"; }
+.flaticon-business-2:before { content: "\f107"; }
+.flaticon-business-3:before { content: "\f108"; }
+.flaticon-business-4:before { content: "\f109"; }
+.flaticon-business-5:before { content: "\f10a"; }
+.flaticon-business-6:before { content: "\f10b"; }
+.flaticon-business-7:before { content: "\f10c"; }
+.flaticon-business-8:before { content: "\f10d"; }
+.flaticon-calendar:before { content: "\f10e"; }
+.flaticon-calendar-1:before { content: "\f10f"; }
+.flaticon-calendar-2:before { content: "\f110"; }
+.flaticon-chef:before { content: "\f111"; }
+.flaticon-chicken:before { content: "\f112"; }
+.flaticon-chicken-looking-right:before { content: "\f113"; }
+.flaticon-coke-bottle:before { content: "\f114"; }
+.flaticon-commerce:before { content: "\f115"; }
+.flaticon-commerce-1:before { content: "\f116"; }
+.flaticon-contact-form:before { content: "\f117"; }
+.flaticon-cooking:before { content: "\f118"; }
+.flaticon-cooking-1:before { content: "\f119"; }
+.flaticon-cow-silhouette:before { content: "\f11a"; }
+.flaticon-cup:before { content: "\f11b"; }
+.flaticon-document:before { content: "\f11c"; }
+.flaticon-drink:before { content: "\f11d"; }
+.flaticon-drinking:before { content: "\f11e"; }
+.flaticon-drinking-1:before { content: "\f11f"; }
+.flaticon-elegant-man-with-suitcase:before { content: "\f120"; }
+.flaticon-fish:before { content: "\f121"; }
+.flaticon-food:before { content: "\f122"; }
+.flaticon-food-1:before { content: "\f123"; }
+.flaticon-food-10:before { content: "\f124"; }
+.flaticon-food-11:before { content: "\f125"; }
+.flaticon-food-12:before { content: "\f126"; }
+.flaticon-food-13:before { content: "\f127"; }
+.flaticon-food-14:before { content: "\f128"; }
+.flaticon-food-15:before { content: "\f129"; }
+.flaticon-food-16:before { content: "\f12a"; }
+.flaticon-food-17:before { content: "\f12b"; }
+.flaticon-food-18:before { content: "\f12c"; }
+.flaticon-food-19:before { content: "\f12d"; }
+.flaticon-food-2:before { content: "\f12e"; }
+.flaticon-food-20:before { content: "\f12f"; }
+.flaticon-food-21:before { content: "\f130"; }
+.flaticon-food-22:before { content: "\f131"; }
+.flaticon-food-23:before { content: "\f132"; }
+.flaticon-food-24:before { content: "\f133"; }
+.flaticon-food-25:before { content: "\f134"; }
+.flaticon-food-26:before { content: "\f135"; }
+.flaticon-food-27:before { content: "\f136"; }
+.flaticon-food-28:before { content: "\f137"; }
+.flaticon-food-29:before { content: "\f138"; }
+.flaticon-food-3:before { content: "\f139"; }
+.flaticon-food-30:before { content: "\f13a"; }
+.flaticon-food-31:before { content: "\f13b"; }
+.flaticon-food-32:before { content: "\f13c"; }
+.flaticon-food-33:before { content: "\f13d"; }
+.flaticon-food-34:before { content: "\f13e"; }
+.flaticon-food-4:before { content: "\f13f"; }
+.flaticon-food-5:before { content: "\f140"; }
+.flaticon-food-6:before { content: "\f141"; }
+.flaticon-food-7:before { content: "\f142"; }
+.flaticon-food-8:before { content: "\f143"; }
+.flaticon-food-9:before { content: "\f144"; }
+.flaticon-fruit:before { content: "\f145"; }
+.flaticon-fruit-1:before { content: "\f146"; }
+.flaticon-gajar-ka-halwa:before { content: "\f147"; }
+.flaticon-glass-and-bottle-of-wine:before { content: "\f148"; }
+.flaticon-grill:before { content: "\f149"; }
+.flaticon-grill-1:before { content: "\f14a"; }
+.flaticon-hamburger:before { content: "\f14b"; }
+.flaticon-hot-soup-in-a-bowl:before { content: "\f14c"; }
+.flaticon-interface:before { content: "\f14d"; }
+.flaticon-kids-couple:before { content: "\f14e"; }
+.flaticon-kitchen:before { content: "\f14f"; }
+.flaticon-knife:before { content: "\f150"; }
+.flaticon-list:before { content: "\f151"; }
+.flaticon-list-1:before { content: "\f152"; }
+.flaticon-list-2:before { content: "\f153"; }
+.flaticon-menu:before { content: "\f154"; }
+.flaticon-paper:before { content: "\f155"; }
+.flaticon-people:before { content: "\f156"; }
+.flaticon-pig-with-round-tail:before { content: "\f157"; }
+.flaticon-placeholder-on-map-paper-in-perspective:before { content: "\f158"; }
+.flaticon-pudding:before { content: "\f159"; }
+.flaticon-pudding-1:before { content: "\f15a"; }
+.flaticon-remove:before { content: "\f15b"; }
+.flaticon-restaurant:before { content: "\f15c"; }
+.flaticon-salad:before { content: "\f15d"; }
+.flaticon-salad-bowl-hand-drawn-food:before { content: "\f15e"; }
+.flaticon-sandwich:before { content: "\f15f"; }
+.flaticon-sandwich-1:before { content: "\f160"; }
+.flaticon-sausage:before { content: "\f161"; }
+.flaticon-serving:before { content: "\f162"; }
+.flaticon-shape:before { content: "\f163"; }
+.flaticon-shopping:before { content: "\f164"; }
+.flaticon-shopping-bag:before { content: "\f165"; }
+.flaticon-shopping-cart:before { content: "\f166"; }
+.flaticon-soda:before { content: "\f167"; }
+.flaticon-spaghetti-plate:before { content: "\f168"; }
+.flaticon-speaking:before { content: "\f169"; }
+.flaticon-steak:before { content: "\f16a"; }
+.flaticon-steak-1:before { content: "\f16b"; }
+.flaticon-stew:before { content: "\f16c"; }
+.flaticon-stew-1:before { content: "\f16d"; }
+.flaticon-take-away-tacos:before { content: "\f16e"; }
+.flaticon-talking-by-phone-auricular-symbol-with-speech-bubble:before { content: "\f16f"; }
+.flaticon-toast:before { content: "\f170"; }
+.flaticon-tool:before { content: "\f171"; }
+.flaticon-truck:before { content: "\f172"; }
+.flaticon-two-speech-bubbles:before { content: "\f173"; }
+.flaticon-verification-of-delivery-list-clipboard-symbol:before { content: "\f174"; }
+.flaticon-woman-with-headset:before { content: "\f175"; }

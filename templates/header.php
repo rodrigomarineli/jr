@@ -3,28 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta name="description" content="BW Store is new Html theme that we have designed to help you transform your store into a beautiful online showroom. This is a fully responsive Html theme, with multiple versions for homepage and multiple templates for sub pages as well" />
+	<meta name="description" content="<?php echo $meta ?>" />
 	<meta name="keywords" content="BW Store,7uptheme" />
 	<meta name="robots" content="noodp,index,follow" />
 	<meta name='revisit-after' content='1 days' />
-	<title>BW Store | Index</title>
+	<title><?php echo $title ?></title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700%7cPlayfair+Display:400,700,400i,700i" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/libs/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/ionicons.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/bootstrap-theme.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/jquery.fancybox.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/jquery-ui.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/owl.carousel.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/owl.transitions.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/jquery.mCustomScrollbar.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/owl.theme.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/animate.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/libs/hover.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/theme.css" media="all"/>
-	<link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
-	<link rel="stylesheet" type="text/css" href="css/browser.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/ionicons.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/bootstrap-theme.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/jquery.fancybox.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/jquery-ui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/owl.carousel.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/owl.transitions.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/jquery.mCustomScrollbar.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/owl.theme.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/animate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/libs/hover.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/theme.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/responsive.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo URLBASE ?>css/browser.css" media="all"/>
 	<!-- <link rel="stylesheet" type="text/css" href="css/rtl.css" media="all"/> -->
+	<?php echo $outras ?>
 </head>
 <body class="preload">
 <div class="wrap">
@@ -35,26 +36,41 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="hot-news pull-left">
 							<ul>
-								<li><a href="http://">Empresa</a></li>
-								<li><a href="http://">Assistência Técnica</a></li>
-								<li><a href="http://">Pós Venda</a></li>
-								<li><a href="http://">Contato</a></li>
+								<?php
+									$menuTopo = CRUD::Select('menu_topo','ordem ASC');
+									foreach ($menuTopo['dados'] as $listaMenuTopo) {
+								?>
+								<li><a href="<?php echo $listaMenuTopo['link'] ?>"><?php echo $listaMenuTopo['titulo'] ?></a></li>
+								<?php
+									}
+								?>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<ul class="top-total-info list-inline-block pull-right">
 							<li>
-								<p class="desc black call-phone title12"><i class="fa fa-volume-control-phone"></i><span class="title18"><strong>16 3615 8077</strong></span></p>
+								<p class="desc black call-phone title12"><i class="fa fa-volume-control-phone"></i><span class="title18"><strong><?php echo $dados_gerais['dados'][0]['telefone'] ?></strong></span></p>
 							</li>
 							<li>
 								<div class="top-social-network">
-									<a href="#" class="title12 black inline-block round"><i class="fa fa-facebook"></i></a>
-									<a href="#" class="title12 black inline-block round"><i class="fa fa-instagram"></i></a>
+									<a href="<?php echo $dados_gerais['dados'][0]['facebook'] ?>" class="title12 black inline-block round"><i class="fa fa-facebook"></i></a>
+									<a href="<?php echo $dados_gerais['dados'][0]['instragram'] ?>" class="title12 black inline-block round"><i class="fa fa-instagram"></i></a>
 								</div>
 							</li>
 							<li>
-								<a href="#" class="title12 black link-account"><i class="fa fa-user"></i><span class="title14">Minha Conta</span></a>
+								<?php
+									if(isset($_SESSION[SESSION_CART]['cliente']['id'])) {
+								?>
+								<a href="#" class="title12 black link-account logado"><i class="fa fa-user"></i><span class="title14"><?php echo $_SESSION[SESSION_CART]['cliente']['nome'] ?></span></a>
+								<a href="<?php echo URLBASE.'sair' ?>" class="title12 black link-account logado margin-left"><span class="title14">Sair</span></a>
+								<?php
+									} else {
+								?>
+								<a href="<?php echo URLBASE.'login' ?>" class="title12 black link-account"><i class="fa fa-user"></i><span class="title14">Logar</span></a>
+								<?php
+									}
+								?>
 							</li>
 						</ul>
 					</div>
@@ -68,27 +84,27 @@
 					<div class="row">
 						<div class="col-md-3 col-sm-12 col-xs-12">
 							<div class="logo logo1 pull-left">
-								<a href="index.html">
-									<span class="logo-icon title24 round white bg-dark"><i class="fa fa-diamond"></i></span>
-									<strong class="play-font font-italic title30 dark text-uppercase">BW-</strong>
-									<span class="play-font font-italic font-normal title30 dark">Store</span>
+								<a href="<?php echo URLBASE ?>">
+									<img src="<?php echo URLBASE ?>images/logo-header.png" alt="Nova JR Compressores">
 								</a>
 							</div>
 							<!-- End logo -->
 						</div>
 						<div class="col-md-6 col-sm-8 col-xs-12">
-							<form method="get" class="search-form form-round">
-								<div class="dropdown-box">
+							<form method="get" action="<?php echo URLBASE.'busca' ?>" class="search-form form-round">
+								<!-- <div class="dropdown-box">
 									<a href="javascript:void(0)" class="dropdown-link">Todos</a>
 									<ul class="list-none dropdown-list">
-										<li><a href="#">Clothing</a></li>
-										<li><a href="#">Accessories</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Electronics</a></li>
-										<li><a href="#">Furniture</a></li>
-										<li><a href="#">Jewelry</a></li>
+										<?php
+											$categoriaProds = CRUD::Select('produtos_categorias');
+											foreach ($categoriaProds['dados'] as $listaCategoriaProds) {
+										?>
+										<li><a href="<?php echo URLBASE.'produtos/'.$listaCategoriaProds['url'] ?>"><?php echo $listaCategoriaProds['nome'] ?></a></li>
+										<?php
+											}
+										?>
 									</ul>
-								</div>
+								</div> -->
 								<input type="text" name="s" placeholder="Procurar pelo produto...">
 								<div class="submit-form">
 									<input type="submit" value="">
@@ -105,86 +121,56 @@
 						<div class="col-md-9 col-sm-8 col-xs-12">
 							<nav class="main-nav main-nav1 pull-left">
 								<ul>
+									<?php
+										$menu = CRUD::SelectOne('menu','nivel',1,'ordem ASC');
+										foreach ($menu['dados'] as $lista_menu) {
+											$submenu = CRUD::SelectOne('menu','mae',$lista_menu['id'],'ordem ASC');
+											if($submenu['num'] == 0) {
+									?>
 									<li>
-										<a href="index.php">Home</a>
+										<a href="<?php echo URLBASE.$lista_menu['link'] ?>"><?php echo $lista_menu['titulo'] ?></a>
 									</li>
+									<?php 
+											} 
+											else { 
+									?>
 									<li class="menu-item-has-children">
-										<a href="produtos.php">Produtos</a>
+										<a href="<?php echo URLBASE.$lista_menu['link'] ?>"><?php echo $lista_menu['titulo'] ?></a>
 										<ul class="sub-menu">
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
+											<?php 
+												foreach ($submenu['dados'] as $lista_submenu) {
+													$subsubmenu = CRUD::SelectOne('menu','mae',$lista_submenu['id'],'ordem ASC');
+													if($subsubmenu['num'] == 0) {
+											?>
+												<li>
+													<a href="<?php echo URLBASE.$lista_submenu['link'] ?>"><?php echo $lista_submenu['titulo'] ?></a>
+												</li>
+											<?php
+													} 
+													else {
+											?>
+														<li class="menu-item-has-children">
+															<a href="<?php echo URLBASE.$lista_submenu['link'] ?>"><?php echo $lista_submenu['titulo'] ?></a>
+															<ul class="sub-menu">
+																<?php
+																	foreach ($subsubmenu['dados'] as $lista_subsubmenu) {
+																?>
+																<li><a href="<?php echo URLBASE.$lista_subsubmenu['link'] ?>"><?php echo $lista_subsubmenu['titulo'] ?></a></li>
+																<?php
+																	}
+																?>
+															</ul>
+														</li>
+											<?php
+													}
+												}
+											?>
 										</ul>
 									</li>
-									<li class="menu-item-has-children">
-										<a href="produtos.php">Peças e Acessórios</a>
-										<ul class="sub-menu">
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
-											<li class="menu-item-has-children">
-												<a href="produtos.php">Compressores</a>
-												<ul class="sub-menu">
-													<li><a href="produtos.php">Com inversor</a></li>
-													<li><a href="produtos.php">Sem inversor</a></li>
-													<li><a href="produtos.php">Isento de Óleo: OF55</a></li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a href="produtos.php">Sistema de Tubulação Para rede AR</a>
-									</li>
+									<?php
+											}
+										}
+									?>
 								</ul>
 								<a href="#" class="toggle-mobile-menu"><span></span></a>
 							</nav>

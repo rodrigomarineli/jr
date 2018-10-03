@@ -1,4 +1,28 @@
 <?php
+	include('templates/includes.php');
+	extract($_GET);
+	$arrayCategorias = array();
+	$getCategoria = CRUD::SelectOne('produtos_categorias','url',$url);
+	array_push($arrayCategorias,$getCategoria['dados'][0]['id']);
+	$getCategoriaFilho = CRUD::SelectOne('produtos_categorias','pai',$getCategoria['dados'][0]['id']);
+	foreach ($getCategoriaFilho['dados'] as $listaGetCategoriaFilho) {
+		array_push($arrayCategorias,$listaGetCategoriaFilho['id']);
+	}
+	$stringCategorias = implode(',',$arrayCategorias);
+	// $paginaExtra = CRUD::SelectOne('paginas_extra','id_paginas',$pagina['dados'][0]['id']);
+	// if($paginaExtra['num'] > 0)
+	// 	$paginaExtraAccordion = CRUD::SelectOne('paginas_extra_accordion','id_paginas_extra',$paginaExtra['dados'][0]['id'],'ordem ASC');
+
+	$title = ($produto['dados'][0]['title'] != '') ? $produto['dados'][0]['title'] : $title;
+	$meta = ($produto['dados'][0]['meta'] != '') ? $produto['dados'][0]['meta'] : $meta;
+	$outras = ($produto['dados'][0]['outras'] != '') ? $produto['dados'][0]['outras'] : $outras;
+
+	if(isset($url))
+		$urlFiltro = $url.'/';
+	else
+		$urlFiltro = '';
+?>
+<?php
 	include('templates/header.php');
 ?>
 	<!-- End Header -->
@@ -6,9 +30,9 @@
 		<div class="wrap-bread-crumb">
 			<div class="container">
 				<div class="bread-crumb">
-					<a href="#">Home</a>
-					<a href="#">Produtos</a>
-					<strong>Compressores</strong>
+					<a href="<?php echo URLBASE ?>">Home</a>
+					<a href="<?php echo URLBASE.'produtos' ?>">Produtos</a>
+					<strong><?php echo $getCategoria['dados'][0]['nome'] ?></strong>
 				</div>
 			</div>
 		</div>
@@ -23,79 +47,51 @@
 								<div class="widget-content">
 									<ul class="list-category-toggle toggle-tab list-none">
 										<h4 class="margin title14 font-bold text-uppercase dark">Produtos</h4>
-										<li class="item-toggle-tab active">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
+										<?php
+											$menuProdutos = CRUD::SelectOne('produtos_categorias','pai',0,'ordem ASC');
+											foreach ($menuProdutos['dados'] as $listaMenuProdutos) {
+												echo '<li class="item-toggle-tab">';
+												$subMenuProdutos = CRUD::SelectOne('produtos_categorias','pai',$listaMenuProdutos['id'],'ordem ASC');
+												if($subMenuProdutos['num'] > 0) {
+													echo '<a href="#" class="toggle-tab-title">'.$listaMenuProdutos['nome'].'</a>';
+													echo '<ul class="toggle-tab-content list-none">';
+													foreach ($subMenuProdutos['dados'] as $listaSubMenuProdutos) {
+														echo '<li><a href="'.URLBASE.'produtos/'.$listaSubMenuProdutos['url'].'">'.$listaSubMenuProdutos['nome'].'</a></li>';
+													}
+													echo '</ul>';
+												} else {
+													echo '<a href="'.URLBASE.'produtos/'.$listaMenuProdutos['url'].'">'.$listaMenuProdutos['nome'].'</a>';
+												}
+												echo '</li>';
+											}
+										?>
 										<h4 class="margin title14 font-bold text-uppercase dark">Peças e Acessórios</h4>
-										<li class="item-toggle-tab active">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<h4 class="margin title14 font-bold text-uppercase dark">Sistema de Tubulação para Rede AR</h4>
+										<?php
+											$menuPecas = CRUD::SelectOne('pecas_categorias','pai',0,'ordem ASC');
+											foreach ($menuPecas['dados'] as $listaMenuPecas) {
+												echo '<li class="item-toggle-tab">';
+												$subMenuPecas = CRUD::SelectOne('pecas_categorias','pai',$listaMenuPecas['id'],'ordem ASC');
+												if($subMenuPecas['num'] > 0) {
+													echo '<a href="#" class="toggle-tab-title">'.$listaMenuPecas['nome'].'</a>';
+													echo '<ul class="toggle-tab-content list-none">';
+													foreach ($subMenuPecas['dados'] as $listaSubMenuPecas) {
+														echo '<li><a href="'.URLBASE.'pecas-e-acessorios/'.$listaSubMenuPecas['url'].'">'.$listaSubMenuPecas['nome'].'</a></li>';
+													}
+													echo '</ul>';
+												}
+												else {
+													echo '<a href="'.URLBASE.'pecas-e-acessorios/'.$listaMenuPecas['url'].'">'.$listaMenuPecas['nome'].'</a>';
+												}
+												echo '</li>';
+											}
+										?>
 									</ul>
 								</div>
 							</div>
 							<!-- End Widget -->
 							<div class="widget widget-search">
 								<h2 class="widget-title title14 font-bold text-uppercase">PESQUISA</h2>
-								<form class="wg-search-form" method="get">
+								<form action="<?php echo URLBASE.'busca' ?>" class="wg-search-form" method="get">
 									<input type="text" name="s" placeholder="Buscar..." />
 									<input type="submit" value=""/>
 								</form>
@@ -108,29 +104,19 @@
 							<div class="title-page">
 								<div class="row">
 									<div class="col-md-12">
-										<h2 class="title30 font-bold text-uppercase pull-left dark">COM INVERSOR</h2>
+										<h2 class="title30 font-bold text-uppercase pull-left dark"><?php echo $getCategoria['dados'][0]['nome'] ?></h2>
 										<ul class="sort-pagi-bar list-inline-block pull-right">
 											<li>
 												<div class="sort-by">
-													<span class="gray">Ordenar por:</span>
+													<span class="gray">Itens por página:</span>
 													<div class="select-box inline-block">
-														<select>
-															<option value="">Lançamentos</option>
-															<option value="">Menor Preço</option>
-															<option value="">Maior Preço</option>
+														<select class="qtdPag">
+															<option <?php if($limit == 12) echo 'selected'; ?> value="<?php echo URLBASE.'produtos/'.$urlFiltro.'limit/12' ?>">12</option>
+															<option <?php if($limit == 16) echo 'selected'; ?> value="<?php echo URLBASE.'produtos/'.$urlFiltro.'limit/16' ?>">16</option>
+															<option <?php if($limit == 20) echo 'selected'; ?> value="<?php echo URLBASE.'produtos/'.$urlFiltro.'limit/20' ?>">20</option>
+															<option <?php if($limit == 24) echo 'selected'; ?> value="<?php echo URLBASE.'produtos/'.$urlFiltro.'limit/24' ?>">24</option>
 														</select>
 													</div>
-												</div>
-											</li>
-											<li>
-												<div class="dropdown-box show-by">
-													<a href="#" class="dropdown-link"><span class="gray">Itens por página:</span><span class="silver">12</span></a>
-													<ul class="dropdown-list list-none">
-														<li><a href="#">12</a></li>
-														<li><a href="#">16</a></li>
-														<li><a href="#">20</a></li>
-														<li><a href="#">24</a></li>
-													</ul>
 												</div>
 											</li>
 										</ul>
@@ -141,116 +127,91 @@
 							<div class="product-list-view">
 								<div class="row">
 									<div class="col-md-12">
+										<?php
+											if(isset($limit)) {
+												$urlPag = URLBASE.'produtos/'.$urlFiltro.'limit/'.$limit.'/';
+											} else {
+												$urlPag = URLBASE.'produtos/';
+											}
+
+											if(isset($url)) {
+												$sql = 'SELECT * FROM produtos WHERE categoria IN ('.$stringCategorias.')';
+												$produtos = CRUD::SelectExtra($sql);
+												$urlPag = $urlPag.'/pag/';
+											}
+											else {
+												$sql = 'SELECT * FROM produtos';
+												$produtos = CRUD::SelectExtra($sql);
+												$urlPag = $urlPag.'pag/';
+											}
+
+											$qtd_pag = (!isset($limit)) ? 12 : (int)$limit;
+											$pag = (isset($_GET['pag'])) ? $_GET['pag'] : 1;
+											$total = $produtos['num'];
+											
+											$ordem = 'id DESC';
+											
+											$paginacao = Geral::Paginacao($qtd_pag,$total,$pag,$urlPag);
+
+											$listagem = CRUD::SelectExtraLimit($sql,$paginacao['limit'],$paginacao['offset'],$ordem);
+											foreach ($listagem['dados'] as $listaProdutos) {
+												$fotos = CRUD::SelectOne('produtos_fotos','id_produtos',$listaProdutos['id'],'ordem ASC');
+										?>
 										<div class="item-product item-product1 item-product-list">
 											<div class="row">
 												<div class="col-md-4 col-sm-4 col-xs-12">
 													<div class="product-thumb">
-														<a href="#" class="product-thumb-link zoom-thumb"><img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt=""></a>
-														<a href="quick-view.html" class="quickview-link fancybox.iframe title12 round white"><i class="fa fa-search"></i></a>
+														<a href="#" class="product-thumb-link zoom-thumb"><img src="<?php echo URLBASE.'images/produtos/fotos/'.$fotos['dados'][0]['imagem'] ?>" alt=""></a>
 													</div>
 												</div>
 												<div class="col-md-8 col-sm-8 col-xs-12">
 													<div class="product-info">
 														<div class="table-custom title12">
 															<div class="text-left">
-																<a href="#" class="cat-parent title16 font-bold dark text-uppercase">Compressor de PArafuso Série EG 11 - 75 KW</a>
+																<a href="<?php echo URLBASE.'produtos/'.$listaProdutos['url'] ?>" class="cat-parent title16 font-bold dark text-uppercase"><?php echo $listaProdutos['nome'] ?></a>
 															</div>
 														</div>
 														<br/>
 														<br/>
-														<ul class="wrap-qty-cart list-inline-block pull-left">
-															<li><label class="title-attr">Qty:</label></li>
-															<li>
-																<div class="detail-qty border">
-																	<a href="#" class="qty-up"><i class="fa fa-angle-up"></i></a>
-																	<span class="qty-val">1</span>
-																	<a href="#" class="qty-down"><i class="fa fa-angle-down"></i></a>
-																</div>
-															</li>
-															<li><a href="#" class="addcart-link inline-block round title12"><i class="fa fa-shopping-basket opacity"></i></a></li>
-														</ul>
-														<p class="product-desc desc dark opaci">Our urban and streetwear fashion place is no Old Navy, Banana Republic or a Walmart clothing store, God forbid. We've quickly become the Iowa's and Midwest's biggest online retailers. </p>
-														<a href="#" class="shop-button dark">SAIBA MAIS</a>
-													</div>	
-												</div>
-											</div>
-										</div>	
-										<div class="item-product item-product1 item-product-list">
-											<div class="row">
-												<div class="col-md-4 col-sm-4 col-xs-12">
-													<div class="product-thumb">
-														<a href="#" class="product-thumb-link zoom-thumb"><img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt=""></a>
-														<a href="quick-view.html" class="quickview-link fancybox.iframe title12 round white"><i class="fa fa-search"></i></a>
-													</div>
-												</div>
-												<div class="col-md-8 col-sm-8 col-xs-12">
-													<div class="product-info">
-														<div class="table-custom title12">
-															<div class="text-left">
-																<a href="#" class="cat-parent title16 font-bold dark text-uppercase">Compressor de PArafuso Série EG 11 - 75 KW</a>
-															</div>
-														</div>
-														<br/>
-														<br/>
-														<ul class="wrap-qty-cart list-inline-block pull-left">
-															<li><label class="title-attr">Qty:</label></li>
-															<li>
-																<div class="detail-qty border">
-																	<a href="#" class="qty-up"><i class="fa fa-angle-up"></i></a>
-																	<span class="qty-val">1</span>
-																	<a href="#" class="qty-down"><i class="fa fa-angle-down"></i></a>
-																</div>
-															</li>
-															<li><a href="#" class="addcart-link inline-block round title12"><i class="fa fa-shopping-basket opacity"></i></a></li>
-														</ul>
-														<p class="product-desc desc dark opaci">Our urban and streetwear fashion place is no Old Navy, Banana Republic or a Walmart clothing store, God forbid. We've quickly become the Iowa's and Midwest's biggest online retailers. </p>
-														<a href="#" class="shop-button dark">SAIBA MAIS</a>
-													</div>	
-												</div>
-											</div>
-										</div>
-										<div class="item-product item-product1 item-product-list">
-											<div class="row">
-												<div class="col-md-4 col-sm-4 col-xs-12">
-													<div class="product-thumb">
-														<a href="#" class="product-thumb-link zoom-thumb"><img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt=""></a>
-														<a href="quick-view.html" class="quickview-link fancybox.iframe title12 round white"><i class="fa fa-search"></i></a>
-													</div>
-												</div>
-												<div class="col-md-8 col-sm-8 col-xs-12">
-													<div class="product-info">
-														<div class="table-custom title12">
-															<div class="text-left">
-																<a href="#" class="cat-parent title16 font-bold dark text-uppercase">Compressor de PArafuso Série EG 11 - 75 KW</a>
-															</div>
-														</div>
-														<br/>
-														<br/>
-														<ul class="wrap-qty-cart list-inline-block pull-left">
-															<li><label class="title-attr">Qty:</label></li>
-															<li>
-																<div class="detail-qty border">
-																	<a href="#" class="qty-up"><i class="fa fa-angle-up"></i></a>
-																	<span class="qty-val">1</span>
-																	<a href="#" class="qty-down"><i class="fa fa-angle-down"></i></a>
-																</div>
-															</li>
-															<li><a href="#" class="addcart-link inline-block round title12"><i class="fa fa-shopping-basket opacity"></i></a></li>
-														</ul>
-														<p class="product-desc desc dark opaci">Our urban and streetwear fashion place is no Old Navy, Banana Republic or a Walmart clothing store, God forbid. We've quickly become the Iowa's and Midwest's biggest online retailers. </p>
-														<a href="#" class="shop-button dark">SAIBA MAIS</a>
+														<form method="post" action="<?php echo URLBASE.'carrinho' ?>">
+															<ul class="wrap-qty-cart list-inline-block pull-left">
+																<li><label class="title-attr">Qty:</label></li>
+																<li>
+																	<input type="hidden" name="acao" value="add">
+																	<input type="hidden" name="tipo" value="1">
+																	<input type="hidden" name="produto" value="<?php echo $listaProdutos['id'] ?>">
+																	<div class="detail-qty border">
+																		<a href="#" class="qty-up"><i class="fa fa-angle-up"></i></a>
+																		<input type="hidden" class="qty-val-input" name="qtd" value="1">
+																		<span class="qty-val">1</span>
+																		<a href="#" class="qty-down"><i class="fa fa-angle-down"></i></a>
+																	</div>
+																</li>
+																<li>
+																	<button type="submit" class="addcart-link inline-block round title12 no-border">
+																		<i class="fa fa-shopping-basket opacity"></i>
+																	</button>
+																</li>
+															</ul>
+														</form>
+														<p class="product-desc desc dark opaci"><?php echo $listaProdutos['descricao'] ?></p>
+														<a href="<?php echo URLBASE.'produtos/'.$listaProdutos['url'] ?>" class="shop-button dark">SAIBA MAIS</a>
 													</div>	
 												</div>
 											</div>
 										</div>
+										<?php
+											}
+										?>
 									</div>
 								</div>
-								<div class="pagi-nav text-right">
+								<?php echo $paginacao['html']; ?>
+								<!-- <div class="pagi-nav text-right">
 									<a href="#" class="current">1</a>
 									<a href="#">2</a>
 									<a href="#">3</a>
 									<a href="#" class="next"><i class="fa fa-angle-right"></i></a>
-								</div>
+								</div> -->
 								<!-- End Paginav -->
 							</div>
 						</div>

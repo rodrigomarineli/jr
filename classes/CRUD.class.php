@@ -377,7 +377,7 @@
 		}
 
 		public static function CopyPedido($id) {
-			$copy = self::getConn()->prepare('INSERT INTO pedido (id, id_mp, id_cliente, id_endereco, data, frete, tipo_frete, prazo_frete, valor, status, desconto, cupom, data_entrega, rastreio, pagamento) SELECT id, id, id_cliente, id_endereco, data, frete, tipo_frete, prazo_frete, valor, status, desconto, cupom, data_entrega, rastreio, pagamento FROM pre_pedido WHERE id= ?');
+			$copy = self::getConn()->prepare('INSERT INTO pedido (id_cliente, id_mp, id_cliente, id_endereco, data, frete, tipo_frete, prazo_frete, valor, status, desconto, cupom, data_entrega, rastreio, pagamento) SELECT id, id, id_cliente, id_endereco, data, frete, tipo_frete, prazo_frete, valor, status, desconto, cupom, data_entrega, rastreio, pagamento FROM pre_pedido WHERE id= ?');
 			$copy->execute(array($id));
 			$lastId = self::getConn()->lastInsertId();
 			$novo_id = $lastId;
@@ -393,27 +393,11 @@
 
 		public static function CopyItens($id_item,$id_pedido) {
 			$down_estoque = 0;
-			$copy2 = self::getConn()->prepare('INSERT INTO pedido_item (id_pedido, id_produto, qtd, atributos, valor, tipo) SELECT ?, id_produto, qtd, atributos, valor, tipo FROM pre_pedido_item WHERE id= ?');
-			$copy2->execute(array($id_pedido,$id_item));
-
-			$sel_prods = CRUD::SelectOne('pre_pedido_item','id',$id_item);
+			$sel_prods = CRUD::SelectOne('carrinho_produtos','id_carrinho',$id_item);
 			foreach ($sel_prods['dados'] as $lista_select) {
-				if($lista_select['tipo'] == 0) {
-					if($lista_select['atributos'] != '' && $lista_select['atributos'] != 0) {
-						$atts = explode(',',$lista_select['atributos']);
-						foreach($atts as $lista_atributos) {
-							$estoque = CRUD::UpdateAjax('produtos_acabamentos','estoque = estoque - '.$lista_select['qtd'].' WHERE id_acabamento = '.$lista_atributos.' AND id_produto = '.$lista_select['id_produto']);
-						}
-					}
-					else {
-						$estoque = CRUD::UpdateAjax('produtos','estoque = estoque - '.$lista_select['qtd'].' WHERE id = '.$lista_select['id_produto']);
-					}
-				}
-				else if($lista_select['tipo'] == 1) {
-					$estoque = CRUD::UpdateAjax('produtos','estoque = estoque - '.$lista_select['qtd'].' WHERE id = '.$lista_select['id_produto']);
-				}
+				$copy2 = self::getConn()->prepare('INSERT INTO pedidos_produtos (id_pedidos, id_produto, qtd, tipo, modo, de, ate) SELECT ?, id_produto, qtd, tipo, modo, de, ate FROM carrinho_produtos WHERE id= ?');
+				$copy2->execute(array($id_pedido,$lista_select['id']));
 			}
-
 		}
 
 		public static function CopyTable($table,$id) {

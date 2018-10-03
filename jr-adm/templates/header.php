@@ -43,8 +43,10 @@ if(!isset($_SESSION[SESSION_ADMIN.'_uid'])){
         <link rel="stylesheet" type="text/css" href="<?php echo $url_site_admin ?>assets/bootstrap-daterangepicker/daterangepicker.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $url_site_admin ?>assets/bootstrap-switch/static/stylesheets/bootstrap-switch.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $url_site_admin ?>assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $url_site ?>fonts/icons-extras/font/flaticon.css"> 
+        <link rel="stylesheet" type="text/css" href="<?php echo $url_site_admin ?>fonts/icons-extras/font/flaticon.css"> 
+        <link rel="stylesheet" type="text/css" href="<?php echo $url_site_admin ?>fonts/font-awesome.min.css"/>
         <link rel="stylesheet" href="<?php echo $url_site_admin ?>assets/prettyPhoto/css/prettyPhoto.css">
+
 
 
         <!--flaty css styles-->

@@ -1,4 +1,17 @@
 <?php
+	include('templates/includes.php');
+	extract($_GET);
+	$produto = CRUD::SelectOne('produtos','url',$url);
+	$getCategoria = CRUD::SelectOne('produtos_categorias','url',$categoria);
+	// $paginaExtra = CRUD::SelectOne('paginas_extra','id_paginas',$pagina['dados'][0]['id']);
+	// if($paginaExtra['num'] > 0)
+	// 	$paginaExtraAccordion = CRUD::SelectOne('paginas_extra_accordion','id_paginas_extra',$paginaExtra['dados'][0]['id'],'ordem ASC');
+
+	$title = ($produto['dados'][0]['title'] != '') ? $produto['dados'][0]['title'] : $title;
+	$meta = ($produto['dados'][0]['meta'] != '') ? $produto['dados'][0]['meta'] : $meta;
+	$outras = ($produto['dados'][0]['outras'] != '') ? $produto['dados'][0]['outras'] : $outras;
+?>
+<?php
 	include('templates/header.php');
 ?>
 	<!-- End Header -->
@@ -6,9 +19,9 @@
 		<div class="wrap-bread-crumb">
 			<div class="container">
 				<div class="bread-crumb">
-					<a href="#">Home</a>
-					<a href="#">Produtos</a>
-					<strong>Compressores</strong>
+					<a href="<?php echo URLBASE ?>">Home</a>
+					<a href="<?php echo URLBASE.'produtos' ?>">Produtos</a>
+					<strong><?php echo $getCategoria['dados'][0]['nome'] ?></strong>
 				</div>
 			</div>
 		</div>
@@ -23,72 +36,44 @@
 								<div class="widget-content">
 									<ul class="list-category-toggle toggle-tab list-none">
 										<h4 class="margin title14 font-bold text-uppercase dark">Produtos</h4>
-										<li class="item-toggle-tab active">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
+										<?php
+											$menuProdutos = CRUD::SelectOne('produtos_categorias','pai',0,'ordem ASC');
+											foreach ($menuProdutos['dados'] as $listaMenuProdutos) {
+												echo '<li class="item-toggle-tab">';
+												$subMenuProdutos = CRUD::SelectOne('produtos_categorias','pai',$listaMenuProdutos['id'],'ordem ASC');
+												if($subMenuProdutos['num'] > 0) {
+													echo '<a href="#" class="toggle-tab-title">'.$listaMenuProdutos['nome'].'</a>';
+													echo '<ul class="toggle-tab-content list-none">';
+													foreach ($subMenuProdutos['dados'] as $listaSubMenuProdutos) {
+														echo '<li><a href="'.URLBASE.'produtos/'.$listaSubMenuProdutos['url'].'">'.$listaSubMenuProdutos['nome'].'</a></li>';
+													}
+													echo '</ul>';
+												} else {
+													echo '<a href="'.URLBASE.'produtos/'.$listaMenuProdutos['url'].'">'.$listaMenuProdutos['nome'].'</a>';
+												}
+												echo '</li>';
+											}
+										?>
 										<h4 class="margin title14 font-bold text-uppercase dark">Peças e Acessórios</h4>
-										<li class="item-toggle-tab active">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<li class="item-toggle-tab">
-											<a href="#" class="toggle-tab-title">Compressores</a>
-											<ul class="toggle-tab-content list-none">
-												<li><a href="#">Com inversor</a></li>
-												<li><a href="#">Sem inversor</a></li>
-												<li><a href="#">Isento de Óleo: OF55</a></li>
-											</ul>
-										</li>
-										<h4 class="margin title14 font-bold text-uppercase dark">Sistema de Tubulação para Rede AR</h4>
+										<?php
+											$menuPecas = CRUD::SelectOne('pecas_categorias','pai',0,'ordem ASC');
+											foreach ($menuPecas['dados'] as $listaMenuPecas) {
+												echo '<li class="item-toggle-tab">';
+												$subMenuPecas = CRUD::SelectOne('pecas_categorias','pai',$listaMenuPecas['id'],'ordem ASC');
+												if($subMenuPecas['num'] > 0) {
+													echo '<a href="#" class="toggle-tab-title">'.$listaMenuPecas['nome'].'</a>';
+													echo '<ul class="toggle-tab-content list-none">';
+													foreach ($subMenuPecas['dados'] as $listaSubMenuPecas) {
+														echo '<li><a href="'.URLBASE.'pecas-e-acessorios/'.$listaSubMenuPecas['url'].'">'.$listaSubMenuPecas['nome'].'</a></li>';
+													}
+													echo '</ul>';
+												}
+												else {
+													echo '<a href="'.URLBASE.'pecas-e-acessorios/'.$listaMenuPecas['url'].'">'.$listaMenuPecas['nome'].'</a>';
+												}
+												echo '</li>';
+											}
+										?>
 									</ul>
 								</div>
 							</div>
@@ -110,19 +95,24 @@
 									<div class="col-md-5 col-sm-12 col-xs-12">
 										<div class="detail-gallery">
 											<div class="mid">
-												<img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt=""/>
+												<?php
+													$fotos = CRUD::SelectOne('produtos_fotos','id_produtos',$produto['dados'][0]['id'],'ordem ASC');
+												?>
+												<img src="<?php echo URLBASE.'images/produtos/fotos/'.$fotos['dados'][0]['imagem'] ?>" alt=""/>
 											</div>
 											<div class="gallery-control">
 												<a href="#" class="prev"><i class="fa fa-angle-left"></i></a>
 												<div class="carousel" data-visible="5">
 													<ul class="list-none">
-														<li><a href="#" class="active"><img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt=""/></a></li>
-														<li><a href="#"><img src="images/photos/jewelry/dark-light-jewelry-02.jpg" alt=""/></a></li>
-														<li><a href="#"><img src="images/photos/jewelry/dark-light-jewelry-03.jpg" alt=""/></a></li>
-														<li><a href="#"><img src="images/photos/jewelry/dark-light-jewelry-04.jpg" alt=""/></a></li>
-														<li><a href="#"><img src="images/photos/jewelry/dark-light-jewelry-05.jpg" alt=""/></a></li>
-														<li><a href="#"><img src="images/photos/jewelry/dark-light-jewelry-06.jpg" alt=""/></a></li>
-														<li><a href="#"><img src="images/photos/jewelry/dark-light-jewelry-07.jpg" alt=""/></a></li>
+														<?php
+															$x = 0;
+															foreach ($fotos['dados'] as $listaFotos) {
+																$x++;
+														?>
+														<li><a href="#" <?php if($x == 0) { 'class="active"'; } ?>><img src="<?php echo URLBASE.'images/produtos/fotos/'.$listaFotos['imagem'] ?>" alt=""/></a></li>
+														<?php
+															}
+														?>
 													</ul>
 												</div>
 												<a href="#" class="next"><i class="fa fa-angle-right"></i></a>
@@ -131,25 +121,30 @@
 										<!-- End Gallery -->
 										<div class="detail-share-social text-center">
 											<span>Compartilhe</span>
-											<a href="#" class="float-shadow"><img src="images/icon/icon-email.png" alt="" /></a>
-											<a href="#" class="float-shadow"><img src="images/icon/icon-facebook.png" alt="" /></a>
-											<a href="#" class="float-shadow"><img src="images/icon/icon-twitter.png" alt="" /></a>
-											<a href="#" class="float-shadow"><img src="images/icon/icon-pinterest.png" alt="" /></a>
+											<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URLBASE.'produtos'.$categoria.'/'.$url ?>" class="float-shadow"><img src="<?php echo URLBASE ?>images/icon/icon-facebook.png" alt="" /></a>
+											<a href="https://twitter.com/home?status=<?php echo URLBASE.'produtos'.$categoria.'/'.$url ?>" class="float-shadow"><img src="<?php echo URLBASE ?>images/icon/icon-twitter.png" alt="" /></a>
+											<a href="https://pinterest.com/pin/create/button/?url=<?php echo URLBASE.'produtos'.$categoria.'/'.$url ?>&media=<?php echo URLBASE.'images/produtos/fotos/'.$fotos['dados'][0]['imagem'] ?>&description=<?php echo $produto['dados'][0]['nome'] ?>" class="float-shadow"><img src="<?php echo URLBASE ?>images/icon/icon-pinterest.png" alt="" /></a>
 										</div>
 									</div>
 									<div class="col-md-7 col-sm-12 col-xs-12">
 										<div class="detail-info">
-											<h2 class="product-title title24 text-uppercase dark font-bold">Compressor de PArafuso Série EG 11 - 75 KW</h2>
-											<p class="desc product-desc">Our urban and streetwear fashion place is no Old Navy, Banana Republic or a Walmart clothing store, God forbid. We've quickly become the Iowa's and Midwest's biggest online retailers. </p>
-											<div class="detail-attr qty-cart">
-												<label class="title-attr">Quantidade:</label>
-												<div class="detail-qty border">
-													<a href="#" class="qty-up"><i class="fa fa-angle-up"></i></a>
-													<span class="qty-val">1</span>
-													<a href="#" class="qty-down"><i class="fa fa-angle-down"></i></a>
+											<form action="<?php echo URLBASE.'carrinho' ?>" method="post">
+												<input type="hidden" name="acao" value="add">
+												<input type="hidden" name="tipo" value="1">
+												<input type="hidden" name="produto" value="<?php echo $produto['dados'][0]['id'] ?>">
+												<h2 class="product-title title24 text-uppercase dark font-bold"><?php echo $produto['dados'][0]['nome'] ?></h2>
+												<p class="desc product-desc"><?php echo $produto['dados'][0]['descricao'] ?></p>
+												<div class="detail-attr qty-cart">
+													<label class="title-attr">Quantidade:</label>
+													<div class="detail-qty border">
+														<a href="#" class="qty-up"><i class="fa fa-angle-up"></i></a>
+														<input type="hidden" class="qty-val-input" name="qtd" value="1">
+														<span class="qty-val">1</span>
+														<a href="#" class="qty-down"><i class="fa fa-angle-down"></i></a>
+													</div>
 												</div>
-											</div>
-											<a href="#" class="shop-button bg-black addcart-link font-bold text-uppercase">SOLICITAR ORÇAMENTO</a>
+												<button type="submit" class="shop-button bg-black addcart-link font-bold text-uppercase">SOLICITAR ORÇAMENTO</button>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -167,57 +162,12 @@
 									<div class="tab-content">
 										<div id="tab1" class="tab-pane active">
 											<div class="detail-addition">
-												<table class="table table-bordered table-striped">
-													<tr>
-														<td><p class="desc">Frame Material: Wood</p></td>
-														<td><p class="desc">Seat Material: Wood</p></td>
-													</tr>
-													<tr>
-														<td><p class="desc">Adjustable Height: No</p></td>
-														<td><p class="desc">Seat Style: Saddle</p></td>
-													</tr>
-													<tr>
-														<td><p class="desc">Distressed: No</p></td>
-														<td><p class="desc">Custom Made: No</p></td>
-													</tr>
-													<tr>
-														<td><p class="desc">Number of Items Included: 1</p></td>
-														<td><p class="desc">Folding: No</p></td>
-													</tr>
-													<tr>
-														<td><p class="desc">Stackable: No</p></td>
-														<td><p class="desc">Cushions Included: No</p></td>
-													</tr>
-													<tr>
-														<td><p class="desc">Arms Included: No</p></td>
-														<td>
-															<div class="product-more-info">
-																<p class="desc">Legs Included: Yes</p>
-																<ul class="list-none">
-																	<li><a href="#">Leg Material: Wood</a></li>
-																	<li><a href="#">Number of Legs: 4</a></li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td><p class="desc">Footrest Included: Yes</p>	</td>
-														<td><p class="desc">Casters Included: No</p></td>
-													</tr>
-													<tr>
-														<td><p class="desc">Nailhead Trim: No</p></td>
-														<td><p class="desc">Weight Capacity: 225 Kilogramm</td>
-													</tr>
-													<tr>
-														<td><p class="desc">Commercial Use: No</p></td>
-														<td><p class="desc">Country of Manufacture: Vietnam</p></td>
-													</tr>
-												</table>
+												<?php echo $produto['dados'][0]['especificacoes'] ?>
 											</div>
 										</div>
 										<div id="tab2" class="tab-pane">
 											<div class="detail-tab-video">
-												<iframe width="560" height="315" src="https://www.youtube.com/embed/FkmIpGikNN0" allowfullscreen></iframe>
+												<?php echo $produto['dados'][0]['video'] ?>
 											</div>
 										</div>
 										<div id="tab3" class="tab-pane">
@@ -225,21 +175,18 @@
 												<div class="col-md-12">
 													<h4>Arquivos disponíveis para Download:</h4>
 												</div>
+												<?php
+													$arquivos = CRUD::SelectOne('produtos_arquivos','id_produtos',$produto['dados'][0]['id']);
+													foreach ($arquivos['dados'] as $listaArquivos) {
+												?>
 												<div class="col-md-4">
-													<h5 class="font-bold">Folder do produto</h5>
-													<img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt="">
-													<a href="#" class="title14 orcamento download float-left"><i class="fa fa-download"></i> DOWNLOAD</a>
+													<h5 class="font-bold"><?php echo $listaArquivos['titulo'] ?></h5>
+													<img src="<?php echo URLBASE.'images/produtos/arquivos/'.$listaArquivos['thumb'] ?>" alt="">
+													<a href="<?php echo URLBASE.'images/produtos/arquivos/'.$listaArquivos['arquivos'] ?>" class="title14 orcamento download float-left"><i class="fa fa-download"></i> DOWNLOAD</a>
 												</div>
-												<div class="col-md-4">
-													<h5 class="font-bold">Folder do produto</h5>
-													<img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt="">
-													<a href="#" class="title14 orcamento download float-left"><i class="fa fa-download"></i> DOWNLOAD</a>
-												</div>
-												<div class="col-md-4">
-													<h5 class="font-bold">Folder do produto</h5>
-													<img src="images/photos/jewelry/dark-light-jewelry-01.jpg" alt="">
-													<a href="#" class="title14 orcamento download float-left"><i class="fa fa-download"></i> DOWNLOAD</a>
-												</div>
+												<?php
+													}
+												?>
 											</div>
 										</div>
 									</div>
